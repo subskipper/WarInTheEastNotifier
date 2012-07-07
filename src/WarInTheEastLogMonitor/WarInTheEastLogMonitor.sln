@@ -1,0 +1,26 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WarInTheEastLogMonitor.Client", "WarInTheEastLogMonitor\WarInTheEastLogMonitor.Client.csproj", "{BEFB17CE-03D4-4E93-B57A-44084B395906}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WarInTheEastLogMonitor.Core", "WarInTheEastLogMonitor.Core\WarInTheEastLogMonitor.Core.csproj", "{BCE0B3B9-1BAB-4677-85DC-E6F5FBD16323}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{BCE0B3B9-1BAB-4677-85DC-E6F5FBD16323}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BCE0B3B9-1BAB-4677-85DC-E6F5FBD16323}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BCE0B3B9-1BAB-4677-85DC-E6F5FBD16323}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BCE0B3B9-1BAB-4677-85DC-E6F5FBD16323}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BEFB17CE-03D4-4E93-B57A-44084B395906}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BEFB17CE-03D4-4E93-B57A-44084B395906}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BEFB17CE-03D4-4E93-B57A-44084B395906}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BEFB17CE-03D4-4E93-B57A-44084B395906}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
