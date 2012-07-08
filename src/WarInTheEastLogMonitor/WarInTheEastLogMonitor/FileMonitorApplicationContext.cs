@@ -2,6 +2,7 @@
 using System.ComponentModel;
 using System.Drawing;
 using System.Windows.Forms;
+using WarInTheEastLogMonitor.Core;
 
 namespace WarInTheEastLogMonitor
 {
@@ -13,6 +14,7 @@ namespace WarInTheEastLogMonitor
         private Form m_MainForm;
         private MenuItem m_ExitMenuItem;
         private MenuItem m_ShowContextMenuItem;
+        //private LogMonitor m_LogMonitor; 
 
         public FileMonitorApplicationContext()
         {
@@ -21,6 +23,9 @@ namespace WarInTheEastLogMonitor
 
         private void InitializeContext()
         {
+            //Hard code path for now while testing...
+            //m_LogMonitor = new LogMonitor(@"C:\LogMonitorTest\");
+
             m_Components = new Container();
             m_LogNotifier = new NotifyIcon(m_Components);
             m_Menu = new ContextMenu();

@@ -81,6 +81,12 @@
   <ItemGroup>
     <EmbeddedResource Include="LogMonitor.ico" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\WarInTheEastLogMonitor.Core\WarInTheEastLogMonitor.Core.csproj">
+      <Project>{BCE0B3B9-1BAB-4677-85DC-E6F5FBD16323}</Project>
+      <Name>WarInTheEastLogMonitor.Core</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
