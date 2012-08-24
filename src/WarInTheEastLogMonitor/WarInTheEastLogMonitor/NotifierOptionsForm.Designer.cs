@@ -41,7 +41,6 @@
             this.btnNotify.TabIndex = 0;
             this.btnNotify.Text = "Notify";
             this.btnNotify.UseVisualStyleBackColor = true;
-            this.btnNotify.Click += new System.EventHandler(this.btnNotify_Click);
             // 
             // lblPath
             // 

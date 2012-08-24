@@ -5,7 +5,10 @@ namespace WarInTheEastLogMonitor.Core
     public class LogMonitor
     {
         private string m_WatchedDirectory;
-        private FileSystemWatcher m_Watcher;
+        public readonly FileSystemWatcher m_Watcher;
+
+        public string ChangedFileName { get; set; }
+        public WatcherChangeTypes ChangeType { get; set; }
 
         public LogMonitor(string pathToWatch)
         {

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.ComponentModel;
 using System.Drawing;
+using System.IO;
 using System.Windows.Forms;
 using WarInTheEastLogMonitor.Core;
 
@@ -9,12 +10,12 @@ namespace WarInTheEastLogMonitor
     public class FileMonitorApplicationContext : ApplicationContext
     {
         private IContainer m_Components;
-        private NotifyIcon m_LogNotifier;
+        private NotifyIcon m_NotifyIcon;
         private ContextMenu m_Menu;
         private Form m_MainForm;
         private MenuItem m_ExitMenuItem;
         private MenuItem m_ShowContextMenuItem;
-        //private LogMonitor m_LogMonitor; 
+        private static LogMonitor m_LogMonitor = new LogMonitor(@"C:\LogMonitorTest\");
 
         public FileMonitorApplicationContext()
         {
@@ -23,20 +24,18 @@ namespace WarInTheEastLogMonitor
 
         private void InitializeContext()
         {
-            //Hard code path for now while testing...
-            //m_LogMonitor = new LogMonitor(@"C:\LogMonitorTest\");
 
             m_Components = new Container();
-            m_LogNotifier = new NotifyIcon(m_Components);
+            m_NotifyIcon = new NotifyIcon(m_Components);
             m_Menu = new ContextMenu();
             m_ExitMenuItem = new MenuItem();
             m_ShowContextMenuItem = new MenuItem();
 
-            m_LogNotifier.ContextMenu = m_Menu;
-            m_LogNotifier.DoubleClick += m_LogNotifier_DoubleClick;
-            m_LogNotifier.Icon = new Icon(typeof(FileMonitorApplicationContext), "LogMonitor.ico");
-            m_LogNotifier.Text = "This is where the meat goes";
-            m_LogNotifier.Visible = true;
+            m_NotifyIcon.ContextMenu = m_Menu;
+            m_NotifyIcon.DoubleClick += m_LogNotifier_DoubleClick;
+            m_NotifyIcon.Icon = new Icon(typeof(FileMonitorApplicationContext), "LogMonitor.ico");
+            m_NotifyIcon.Text = "This is where the meat goes";
+            m_NotifyIcon.Visible = true;
 
             m_Menu.MenuItems.AddRange(new[]{m_ShowContextMenuItem, m_ExitMenuItem});
 
@@ -48,6 +47,27 @@ namespace WarInTheEastLogMonitor
             m_ExitMenuItem.Index = 1;
             m_ExitMenuItem.Text = "&Exit";
             m_ExitMenuItem.Click += ExitMenuItemOnClick;
+            m_LogMonitor.m_Watcher.Changed += WatcherOnChanged;
+        }
+
+        private void WatcherOnChanged(object sender, FileSystemEventArgs fileSystemEventArgs)
+        {
+            m_LogMonitor.ChangedFileName = fileSystemEventArgs.Name;
+            m_LogMonitor.ChangeType = fileSystemEventArgs.ChangeType;
+            SetBalloonNotifier();
+
+            m_NotifyIcon.Visible = true;
+            m_NotifyIcon.ShowBalloonTip(5000);
+
+        }
+
+        private void SetBalloonNotifier()
+        {
+            m_NotifyIcon.Icon = SystemIcons.Application;
+            m_NotifyIcon.BalloonTipTitle = "This is a test";
+            m_NotifyIcon.BalloonTipText = string.Format("Watching file {0} and detected change {1}", m_LogMonitor.GetWatchedDirectory, m_LogMonitor.ChangeType);
+            m_NotifyIcon.BalloonTipIcon = ToolTipIcon.None;
+          
         }
 
         private void ExitMenuItemOnClick(object sender, EventArgs eventArgs)
