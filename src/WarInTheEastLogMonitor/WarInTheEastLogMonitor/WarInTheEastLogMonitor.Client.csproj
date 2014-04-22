@@ -45,6 +45,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="FileMonitorApplicationContext.cs" />
+    <Compile Include="FileParser.cs" />
     <Compile Include="NotifierOptionsForm.cs">
       <SubType>Form</SubType>
     </Compile>

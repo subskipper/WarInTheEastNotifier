@@ -15,7 +15,7 @@ namespace WarInTheEastLogMonitor
         private Form m_MainForm;
         private MenuItem m_ExitMenuItem;
         private MenuItem m_ShowContextMenuItem;
-        private static LogMonitor m_LogMonitor = new LogMonitor(@"C:\LogMonitorTest\");
+        private static LogMonitor m_LogMonitor = new LogMonitor(@"D:\Spel\Matrix Games\Gary Grigsby's War in the East\Dat\save\");
 
         public FileMonitorApplicationContext()
         {
@@ -54,18 +54,22 @@ namespace WarInTheEastLogMonitor
         {
             m_LogMonitor.ChangedFileName = fileSystemEventArgs.Name;
             m_LogMonitor.ChangeType = fileSystemEventArgs.ChangeType;
-            SetBalloonNotifier();
+            var fileName = fileSystemEventArgs.Name;
+
+            SetBalloonNotifier(fileName);
 
             m_NotifyIcon.Visible = true;
-            m_NotifyIcon.ShowBalloonTip(5000);
+            m_NotifyIcon.ShowBalloonTip(10000);
 
         }
 
-        private void SetBalloonNotifier()
+        private void SetBalloonNotifier(string fileName)
         {
             m_NotifyIcon.Icon = SystemIcons.Application;
-            m_NotifyIcon.BalloonTipTitle = "This is a test";
-            m_NotifyIcon.BalloonTipText = string.Format("Watching file {0} and detected change {1}", m_LogMonitor.GetWatchedDirectory, m_LogMonitor.ChangeType);
+            m_NotifyIcon.BalloonTipTitle = "Event logged";
+            
+            m_NotifyIcon.BalloonTipText = string.Format("Watching file {0} and detected change {1} in {2}", m_LogMonitor.GetWatchedDirectory, m_LogMonitor.ChangeType, fileName);
+
             m_NotifyIcon.BalloonTipIcon = ToolTipIcon.None;
           
         }
